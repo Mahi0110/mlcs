@@ -44,7 +44,7 @@ print("Preprocessor is ready.")
 
 # 1. Load the trained model
 print("Loading trained autoencoder model...")
-model = tf.keras.models.load_model('autoencoder_model.h5')
+model = tf.keras.models.load_model('autoencoder_model.keras')
 
 # 2. Set your ANOMALY_THRESHOLD
 # IMPORTANT: Replace 0.001156 with the actual threshold value from your training script
