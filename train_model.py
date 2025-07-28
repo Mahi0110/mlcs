@@ -21,6 +21,22 @@ columns = [
     'dst_host_rerror_rate', 'dst_host_srv_rerror_rate', 'label'
 ]
 df = pd.read_csv('KDDTest+.txt', header=None, names=columns)
+# --- ADD THIS DATA CLEANING SECTION ---
+
+# Clean 'Response Time' by removing ' ms' and converting to a number
+if 'Response Time' in df.columns:
+    df['Response Time'] = df['Response Time'].str.replace(' ms', '').astype(float)
+
+# Clean 'Data Transfer Rate' by removing ' Mbps' and converting to a number
+if 'Data Transfer Rate' in df.columns:
+    df['Data Transfer Rate'] = df['Data Transfer Rate'].str.replace(' Mbps', '').astype(float)
+
+# --- END OF DATA CLEANING SECTION ---
+
+
+# Now, redefine your features and labels with the cleaned data
+features = df.drop('label', axis=1) # Or whatever your label column is named
+# ... the rest of your preprocessing script follows
 
 if 'num_outbound_cmds' not in df.columns:
     df['num_outbound_cmds'] = 0
